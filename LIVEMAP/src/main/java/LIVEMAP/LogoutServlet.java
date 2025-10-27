@@ -1,31 +1,25 @@
-package LIVEMAP;
+package  LIVEMAP;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.*;
 
 @WebServlet("/logOut")
-public class LogoutServlet extends HttpServlet {
-	
+public class LogOutServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		
-		//세션종료
-		if( session !=null )	{	
-			session.invalidate();	
-		
-			//메인화면으로
-			response.sendRedirect("/LIVEMAP/main.do");
+		if (session != null) {
+			session.removeAttribute("tokenRequested");
+			session.removeAttribute("memberId");
+			session.removeAttribute("nickname");
+			session.removeAttribute("kakaoAccessToken");
+			session.removeAttribute("kakaoRefreshToken");
+			session.invalidate();
+			System.out.println("[KAKAO] 세션 초기화 및 로그아웃 완료");
 		}
-		
+		response.sendRedirect(request.getContextPath() + "/main.do");
 	}
-
 }

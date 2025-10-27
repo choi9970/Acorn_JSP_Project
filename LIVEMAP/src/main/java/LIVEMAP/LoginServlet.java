@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println( pwd);
 		
 		MemberService service  = new MemberService();
-		boolean result=service.loginJudgeService(email,pwd);
+		boolean result=service.loginJudge(email,pwd);
 		
 		if(result) {
 	     	//회원인경우 session저장소에 저장하기
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		else {		   
 			// 로그인 실패 메시지 request에 저장
 		    request.setAttribute("msg", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
-			request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);			
+			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);			
 			
 		}
 	

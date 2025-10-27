@@ -1,37 +1,22 @@
 package LIVEMAP;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-
+import javax.servlet.http.*;
+import java.io.IOException;
 
 @WebServlet("/main.do")
-public class MainServlet extends HttpServlet{
-	
-	
+public class MainServlet extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");	
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
-		HttpSession session = request.getSession();
-		String id  = (String)session.getAttribute("memberId");
-		System.out.println(id);
-		
-		MemberService service= new MemberService();
-		Member member= service.getfindById(id);
-		System.out.println(member);
-		
-		request.setAttribute("member", member);
-		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession s = req.getSession(false);
+		if (s == null || s.getAttribute("memberId") == null) {
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		req.setAttribute("memberId", s.getAttribute("memberId"));
+		req.setAttribute("nickname", s.getAttribute("nickname"));
+		req.setAttribute("email", s.getAttribute("email"));
+		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
 	}
-	
 }
