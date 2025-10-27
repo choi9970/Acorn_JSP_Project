@@ -1,45 +1,16 @@
 package LIVEMAP;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
-	private int memberId;       // 회원 번호 (PK)
-    private String memberEmail;    // 이메일아이디
-    private String memberPw;    // 비밀번호
-    private String memberName;  // 이름
-	private String memberTel;   // 전화번호
-	private String memberSignup;
-	private Date memberCreateddate;
-	private Date memberUpdatedate;
-	private char memberGender;
-	private Date memberBirth;
-	private String memberAddr1;
-	private String memberAddr2;
-	private String memberNickname;
-	
-	
-	
-	public Member(int memberId, String memberEmail, String memberPw, String memberName, String memberTel,
-			String memberSignup, Date memberCreateddate, Date memberUpdatedate, char memberGender, Date memberBirth,
-			String memberAddr1, String memberAddr2, String memberNickname) {
-		super();
-		this.memberId = memberId;
-		this.memberEmail = memberEmail;
-		this.memberPw = memberPw;
-		this.memberName = memberName;
-		this.memberTel = memberTel;
-		this.memberSignup = memberSignup;
-		this.memberCreateddate = memberCreateddate;
-		this.memberUpdatedate = memberUpdatedate;
-		this.memberGender = memberGender;
-		this.memberBirth = memberBirth;
-		this.memberAddr1 = memberAddr1;
-		this.memberAddr2 = memberAddr2;
-		this.memberNickname = memberNickname;
-	}
+	private int memberId;
+	private String email;
+	private String nickname;
+	private String name;
+	private String signup;
+	private Date createdDate;
+	private Date updatedDate;
 
-
-	
 	public int getMemberId() {
 		return memberId;
 	}
@@ -48,112 +19,51 @@ public class Member {
 		this.memberId = memberId;
 	}
 
-	public String getMemberEmail() {
-		return memberEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getMemberPw() {
-		return memberPw;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setMemberPw(String memberPw) {
-		this.memberPw = memberPw;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public String getName() {
+		return name;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMemberTel() {
-		return memberTel;
+	public String getSignup() {
+		return signup;
 	}
 
-	public void setMemberTel(String memberTel) {
-		this.memberTel = memberTel;
+	public void setSignup(String signup) {
+		this.signup = signup;
 	}
 
-	public String getMemberSignup() {
-		return memberSignup;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setMemberSignup(String memberSignup) {
-		this.memberSignup = memberSignup;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public Date getMemberCreateddate() {
-		return memberCreateddate;
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
 
-	public void setMemberCreateddate(Date memberCreateddate) {
-		this.memberCreateddate = memberCreateddate;
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
-
-	public Date getMemberUpdatedate() {
-		return memberUpdatedate;
-	}
-
-	public void setMemberUpdatedate(Date memberUpdatedate) {
-		this.memberUpdatedate = memberUpdatedate;
-	}
-
-	public char getMemberGender() {
-		return memberGender;
-	}
-
-	public void setMemberGender(char memberGender) {
-		this.memberGender = memberGender;
-	}
-
-	public Date getMemberBirth() {
-		return memberBirth;
-	}
-
-	public void setMemberBirth(Date memberBirth) {
-		this.memberBirth = memberBirth;
-	}
-
-	public String getMemberAddr1() {
-		return memberAddr1;
-	}
-
-	public void setMemberAddr1(String memberAddr1) {
-		this.memberAddr1 = memberAddr1;
-	}
-
-	public String getMemberAddr2() {
-		return memberAddr2;
-	}
-
-	public void setMemberAddr2(String memberAddr2) {
-		this.memberAddr2 = memberAddr2;
-	}
-
-	public String getMemberNickname() {
-		return memberNickname;
-	}
-
-	public void setMemberNickname(String memberNickname) {
-		this.memberNickname = memberNickname;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Member [memberId=" + memberId + ", memberEmail=" + memberEmail + ", memberPw=" + memberPw
-				+ ", memberName=" + memberName + ", memberTel=" + memberTel + ", memberSignup=" + memberSignup
-				+ ", memberCreateddate=" + memberCreateddate + ", memberUpdatedate=" + memberUpdatedate
-				+ ", memberGender=" + memberGender + ", memberBirth=" + memberBirth + ", memberAddr1=" + memberAddr1
-				+ ", memberAddr2=" + memberAddr2 + ", memberNickname=" + memberNickname + "]";
-	}
-	
-	
 }
