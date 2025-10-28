@@ -1,0 +1,205 @@
+/* ================================
+   1. 헤더 (로고, 로그인/로그아웃)
+   ================================ */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header-spacer, .user-actions {
+    flex: 1;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-actions a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+/* ================================
+   2. 날짜 네비게이션 (날짜 버튼)
+   ================================ */
+.date-navigation {
+    display: flex;
+    gap: 8px;
+}
+
+.date_btn {
+    width: 50px;
+    height: 60px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date_btn:hover {
+    background-color: #f0f0f0;
+}
+
+.date_btn.today {
+    background-color: #d93025;
+    color: white !important;
+    border-color: #d93025;
+}
+
+.day-of-week {
+    font-size: 12px;
+    color: #888;
+}
+
+.day-of-month {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.date_btn.today .day-of-week {
+    color: #eee;
+}
+
+/* ================================
+   3. 카테고리 네비게이션
+   ================================ */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+}
+
+.category-btn {
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.category-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.category-btn.active {
+    background-color: #d93025;
+    color: white;
+    font-weight: bold;
+}
+
+.category-btn.active:hover {
+    background-color: #d93025;
+}
+
+/* ================================
+   4. 스케줄 목록
+   ================================ */
+.schedule-list-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.schedule-time {
+    width: 100px;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    padding-bottom: 10px;
+    margin-right: 20px;
+}
+
+.schedule-content {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+.schedule-image-placeholder {
+    width: 140px;
+    height: 140px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* 이미지가 박스 밖으로 안 나가도록 */
+}
+
+.schedule-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율 유지하며 박스 가득 채움 */
+    border-radius: 8px; /* 박스 둥글기와 동일 */
+}
+
+.schedule-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 5px;
+    flex-grow: 1;
+}
+
+.platform-name {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.schedule-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.schedule-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.notification-btn {
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+.notification-btn.active {
+    background-color: #e63946;
+    color: #ffffff;           
+    border-color: #e63946; 
+}
