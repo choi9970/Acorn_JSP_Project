@@ -22,8 +22,8 @@ public class SchedulesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonText = "";
 
-        // 1️⃣ Python 실행
-        String pythonPath = "C:\\Users\\user\\PycharmProjects\\PythonProject\\.venv\\Scripts\\python.exe";
+        // 1️. Python 실행
+        String pythonPath = "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";
         String realPath = getServletContext().getRealPath("/WEB-INF/python/schedules.py");
         ProcessBuilder pb = new ProcessBuilder(pythonPath, realPath);
         pb.environment().put("PYTHONIOENCODING", "utf-8");

@@ -101,8 +101,8 @@
 			    }
 			%>
         <div class="footer">
-            [cite_start]아직 회원이 아니신가요? [cite: 20]
-            [cite_start]<a href="join.jsp">회원가입</a> [cite: 20]
+            아직 회원이 아니신가요?
+            <a href="join.jsp">회원가입</a>
         </div>
     </div>
 </form>

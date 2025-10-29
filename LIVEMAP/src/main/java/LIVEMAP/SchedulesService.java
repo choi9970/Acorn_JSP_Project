@@ -56,8 +56,8 @@ public class SchedulesService {
         return dao.updateDeleteFlgToActive(platformId, scheduleName, scheduleStart1);
     }
  // 비즈니스 로직 처리 가능 (예: 가격 필터, 시간 변환 등)
-    public List<Map<String, Object>> getSchedulesByDateAndCategory(Timestamp date, int categoryId) {
-        List<Map<String, Object>> schedules = dao.selectSchedulesByDate(date, categoryId);
+    public List<Map<String, Object>> getSchedulesByDateAndCategory(Timestamp date, int categoryId, Integer memberId) {
+        List<Map<String, Object>> schedules = dao.selectSchedulesByDate(date, categoryId, memberId);
 
         // 필요시 추가 비즈니스 로직 처리 가능
         // 예: 가격 null 처리, 이미지 URL 기본값 처리 등

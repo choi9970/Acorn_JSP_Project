@@ -20,7 +20,7 @@ CHROME_DRIVER_PATH = r"C:\chromedriver-win64\chromedriver.exe"
 BASE_URL_NAVER = "https://shoppinglive.naver.com/calendar"
 BASE_URL_KAKAO = "https://shoppinglive.kakao.com/calendar"
 HEADLESS = False
-PATH_DIR = r"C:\javaCloud3Ws\LIVEMAP\src\main\webapp"
+PATH_DIR = r"C:\acorn_git\Acorn_JSP_Project\LIVEMAP\src\main\webapp"
 
 # ====== 로그 파일명 생성 (절대경로 기반) ======
 log_dir = os.path.join(PATH_DIR, "logs")   # 현재 py 파일이 있는 폴더 기준
@@ -69,6 +69,15 @@ def make_safe_filename(title: str, ext: str = ".jpg") -> str:
     title = re.sub(r'[\n\r\t]', ' ', title)
     title = re.sub(r'[\\/*?:"<>|]', '', title)
     title = re.sub(r'\s+', ' ', title).strip()
+    # 1. 대괄호 안의 내용 제거
+    title = re.sub(r'\[.*?\]', '', title)
+
+    # 2. 이모지/특수문자 제거 (한글, 영어, 숫자, 공백만 남김)
+    title = re.sub(r'[^가-힣a-zA-Z0-9\s]', '', title)
+
+    # 3. 중복 공백 제거 후 양쪽 공백 제거
+    title = re.sub(r'\s+', ' ', title).strip()
+
     return f"{title}{ext}"
 
 
@@ -112,13 +121,17 @@ def kakao_datetime(span):
 
 
 # ====== 공통: js 클릭 ======
-def js_click(driver, css_selector: str, delay: float = 1.5):
+def js_click(driver, css_selector: str, delay: float = 1.5, scroll_to_bottom: bool = False):
     elem = WebDriverWait(driver, 1).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, css_selector))
     )
     driver.execute_script("arguments[0].scrollIntoView({block:'center'});", elem)
     driver.execute_script("arguments[0].click();", elem)
     time.sleep(delay)
+
+    if scroll_to_bottom:
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(0.5)  # 스크롤 후 잠시 대기
 
 
 # ====== 네이버 쇼핑라이브 수집 ======
@@ -226,7 +239,7 @@ def kakao_shoppinglive(driver):
                     continue
                 css_selector = f'a[data-tiara-name="{text}"]'
                 try:
-                    js_click(driver, css_selector)
+                    js_click(driver, css_selector, scroll_to_bottom=True)
                     new_soup = BeautifulSoup(driver.page_source, "html.parser")
                     for li2 in new_soup.select('[data-tiara-action-name="예정_콘텐츠_클릭"]'):
                         if li2.find_parent("div", class_="group_nolive"):
@@ -258,9 +271,13 @@ def kakao_shoppinglive(driver):
                         save_path = download_image(img_tag["src"], card_title) if img_tag and img_tag.get(
                             "src") else None
 
-                        a_url_tag = li2.select_one("a.link_item")
-                        card_url = f"https://shoppinglive.kakao.com{a_url_tag['href']}" if a_url_tag and a_url_tag.get(
-                            "href") else None
+                        #a_url_tag = li2.select_one("a.link_item")
+                        #card_url = f"https://shoppinglive.kakao.com{a_url_tag['href']}" if a_url_tag and a_url_tag.get(
+                        #    "href") else None
+                        a_url_tag = li2.select_one("div.area_thumb img.img_g")
+                        logger.warning(a_url_tag)
+                        card_url = download_image(img_tag["src"], card_title) if img_tag and img_tag.get(
+                            "src") else None
 
                         item = {
                             "platform_id": 2,
