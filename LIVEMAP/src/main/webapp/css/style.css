@@ -1,3 +1,6 @@
+a{
+	text-decoration: none;
+}
 /* ================================
    1. 헤더 (로고, 로그인/로그아웃)
    ================================ */
@@ -177,8 +180,9 @@
 
 .schedule-title {
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: 500;
     margin: 0;
+    color: black;
 }
 
 .schedule-price {
@@ -203,3 +207,5 @@
     color: #ffffff;           
     border-color: #e63946; 
 }
+
+

@@ -23,7 +23,7 @@ public class CategoryServlet extends HttpServlet {
         String jsonText = "";
 
         // 1. WEB-INF/python/category.py 경로
-        String pythonPath = "C:\\Users\\user\\PycharmProjects\\PythonProject\\.venv\\Scripts\\python.exe";
+        String pythonPath = "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe";
         String realPath = getServletContext().getRealPath("/WEB-INF/python/category.py");
 
         ProcessBuilder pb = new ProcessBuilder(pythonPath, realPath);

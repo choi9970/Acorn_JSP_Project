@@ -32,12 +32,12 @@ public class LoginServlet extends HttpServlet {
 		if(result) {
 	     	//회원인경우 session저장소에 저장하기
 			//1)  session  저장소 얻어오기   => 사용자에 대한 저장소 얻어오기  ( 세션ID값으로 얻어온다 )
-			// 서션id => 서버에 최초에 접속하면 서버가 발급하는 키 
+			// 서션id => 서버에 최초에 접속하면 서버가 발급하는 키
+			Member member = service.getfindById(email);
 			
 			HttpSession session  = request.getSession();
-			
 			//2) 저장하기 
-			session.setAttribute("memberId", email);			
+			session.setAttribute("memberId", member.getMemberId());			
 			
 			//메인페이지가 요청되게 하기
 			response.sendRedirect(request.getContextPath() + "/main.do");		 			
